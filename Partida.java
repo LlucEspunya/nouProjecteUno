@@ -19,32 +19,25 @@ public class Partida {
         preparar();
         boolean partidaAcabada = false;
         while(!partidaAcabada){
-            torn();
+//            torn();
         }
     }
 
     private void preparar(){
-        //barrejar
-        mazo.barrejarCartes();
-        //Crear jugadors
-        ArrayList<String> nomsJugadors = UI.getNomsJugadors();
-        ordreJugadors.crearJugador();
 
+        mazo.barrejarCartes();        //barrejar
+
+        ArrayList<String> nomsJugadors = UI.getNomsJugadors();        //Crear jugadors
+        ordreJugadors.crearJugador();
         quantitatJugadors = nomsJugadors.size();
 
-        //Barrejar ordre
-        ordreJugadors.barrejarOrdre();
+        ordreJugadors.barrejarOrdre();        //Barrejar ordre
 
-        //Repartir cartes
-        repartirCartes();
+        repartirCartes();           //Repartir cartes
 
         mazo.tirarCartaPilo(pilo);
     }
 
-    private boolean torn(){
-        ordreJugadors.getJugadorActiu();
-        
-    }
 
     private void repartirCartes(){
         for (int i = 0; i < quantitatJugadors*quantitatCartesMa; i++){  //reparteix per tots els jugadors
