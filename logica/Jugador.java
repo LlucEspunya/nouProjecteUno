@@ -20,7 +20,7 @@ public class Jugador {
         return cartes;
     }
 
-    public void tirarCartaPilo(Pilo pilo){
+    public void tirarCarta(Pilo pilo){
         if (!cartes.isEmpty()){
             Carta carta = cartes.remove(0);
             pilo.addCarta(carta);

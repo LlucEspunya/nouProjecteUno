@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public class OrdreJugadors {
 
     private LinkedList<Jugador> jugadors;
-    ArrayList<String> noms = UI.nomsJugadors.getNomsJugadors();
+    ArrayList<String> noms = UI.getNomsJugadors();
     private int jugadorActiu;
 
     public OrdreJugadors(){
@@ -29,14 +29,17 @@ public class OrdreJugadors {
         Collections.shuffle(jugadors);
     }
 
-    public String getJugadorActiu(){
-        return noms.get(jugadorActiu);
+    public Jugador getJugadorActiu(){
+        return jugadors.get(jugadorActiu);
     }
 
-
-
-
-
-
+    public void passarTorn(){
+        if(jugadorActiu < jugadors.size() - 1){
+            jugadorActiu++;
+        }
+        else{
+            jugadorActiu = 0;
+        }
+    }
 }
 

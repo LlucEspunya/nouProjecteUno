@@ -24,6 +24,10 @@ public class Mazo {
         return cartes;
     }
 
+    public Carta agafarCarta(){
+        return cartes.pop();
+    }
+
     public void tirarCartaPilo(Pilo pilo) {
         Carta carta = cartes.remove(0);
         pilo.addCarta(carta);

@@ -85,21 +85,19 @@ public class UI {
         System.out.println();
     }
 
-    public class nomsJugadors{
-        public static ArrayList<String> getNomsJugadors(){
-            ArrayList<String> noms = new ArrayList<>();
+    public static ArrayList<String> getNomsJugadors(){
+        ArrayList<String> noms = new ArrayList<>();
 
-            System.out.println("Quants jugadors hi haurà?: ");
-            int quantitatJugadors = object.nextInt();
-            object.nextLine();
+        System.out.println("Quants jugadors hi haurà?: ");
+        int quantitatJugadors = object.nextInt();
+        object.nextLine();
 
-            for (int i = 0; i < quantitatJugadors; i++){
-                System.out.println("Nom del jugador:");
-                String nomJugador = object.nextLine();
-                noms.add(nomJugador);
-            }
-            return noms;
+        for (int i = 0; i < quantitatJugadors; i++){
+            System.out.println("Nom del jugador:");
+            String nomJugador = object.nextLine();
+            noms.add(nomJugador);
         }
+        return noms;
     }
 }
 
