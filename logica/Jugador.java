@@ -37,5 +37,16 @@ public class Jugador {
     public int nombreDeCartes(){
         return cartes.size();
     }
+
+    public boolean potTirarCarta(Pilo pilo){
+        boolean potTirar = false;
+        Carta ultimaCarta = pilo.consultarCarta();
+        for(Carta carta : cartes){
+            if(Regles.sonCompatibles(carta, ultimaCarta)){
+                potTirar = true;
+            }
+        }
+        return potTirar;
+    }
 }
 

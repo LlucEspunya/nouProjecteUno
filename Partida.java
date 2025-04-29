@@ -41,9 +41,9 @@ public class Partida {
         mazo.tirarCartaPilo(pilo);
     }
 
-    private void torn(){
+    private boolean torn(){
         ordreJugadors.getJugadorActiu();
-
+        
     }
 
     private void repartirCartes(){
