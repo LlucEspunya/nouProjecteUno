@@ -27,9 +27,8 @@ public class Partida {
 
         mazo.barrejarCartes();        //barrejar
 
-        ArrayList<String> nomsJugadors = UI.getNomsJugadors();        //Crear jugadors
-        ordreJugadors.crearJugador();
-        quantitatJugadors = nomsJugadors.size();
+        ordreJugadors.crearJugador();                           //crear jugadors
+        quantitatJugadors = ordreJugadors.getNombreJugadors();
 
         ordreJugadors.barrejarOrdre();        //Barrejar ordre
 

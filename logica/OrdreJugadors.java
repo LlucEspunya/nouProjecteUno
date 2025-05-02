@@ -41,5 +41,9 @@ public class OrdreJugadors {
             jugadorActiu = 0;
         }
     }
+
+    public int getNombreJugadors(){
+        return jugadors.size();
+    }
 }
 
