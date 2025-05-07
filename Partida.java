@@ -51,7 +51,7 @@ public class Partida {
                         mazo.reiniciarMazo(pilo);
                     }
                 }
-                System.out.println("Cartes a la mà:");
+                System.out.println(jugadorActiu.getNomJugador() + ": Cartes a la mà:");
                 UI.mostrarCartesJugador(ordreJugadors);
                 int cartaTirar = UI.triarCartaTirar(jugadorActiu.getCartes());      //crida la funció de la UI que demana la carta al jugador
 
@@ -60,7 +60,7 @@ public class Partida {
                     cartaValida = true;
                 }
                 else{
-                    System.out.println("La carta no és vàlida!");
+                    System.out.println(jugadorActiu.getNomJugador() + ": La carta no és vàlida!");
                 }
             }
 
