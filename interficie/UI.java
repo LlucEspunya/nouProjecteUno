@@ -1,7 +1,9 @@
 package uno.interficie;
-
+import uno.logica.Jugador;
 import uno.logica.Carta;
+import uno.logica.OrdreJugadors;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -98,6 +100,18 @@ public class UI {
             noms.add(nomJugador);
         }
         return noms;
+    }
+
+    public static void mostrarCartesJugador(OrdreJugadors ordreJugadors){
+        Jugador jugadorActiu = ordreJugadors.getJugadorActiu();
+        mostrarCartes(jugadorActiu.getCartes());
+    }
+
+    public static int triarCartaTirar(ArrayList<Carta> cartes){
+        System.out.println("Quina carta vols jugar?: ");
+        int numCarta = object.nextInt();
+        
+        return numCarta - 1;
     }
 
 }

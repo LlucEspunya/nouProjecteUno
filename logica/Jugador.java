@@ -1,5 +1,7 @@
 package uno.logica;
 
+import uno.interficie.UI;
+
 import java.util.ArrayList;
 
 public class Jugador {
@@ -20,9 +22,9 @@ public class Jugador {
         return cartes;
     }
 
-    public void tirarCarta(Pilo pilo){
+    public void tirarCarta(Pilo pilo, int cartaTirar){
         if (!cartes.isEmpty()){
-            Carta carta = cartes.remove(0);
+            Carta carta = cartes.remove(cartaTirar);
             pilo.addCarta(carta);
         }
     }
@@ -38,13 +40,12 @@ public class Jugador {
         return cartes.size();
     }
 
-    public boolean potTirarCarta(Pilo pilo){
+    public boolean potTirarCarta(Pilo pilo, int cartaTirar){
         boolean potTirar = false;
         Carta ultimaCarta = pilo.consultarCarta();
-        for(Carta carta : cartes){
-            if(Regles.sonCompatibles(carta, ultimaCarta)){
-                potTirar = true;
-            }
+        Carta cartaComprovar = cartes.get(cartaTirar);
+        if(Regles.sonCompatibles(cartaComprovar, ultimaCarta)){
+            potTirar = true;
         }
         return potTirar;
     }
