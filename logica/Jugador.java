@@ -44,7 +44,7 @@ public class Jugador {
         boolean potTirar = false;
         Carta ultimaCarta = pilo.consultarCarta();
         Carta cartaComprovar = cartes.get(cartaTirar);
-        if(Regles.sonCompatibles(cartaComprovar, ultimaCarta)){
+        if(Carta.sonCompatibles(cartaComprovar, ultimaCarta)){
             potTirar = true;
         }
         return potTirar;

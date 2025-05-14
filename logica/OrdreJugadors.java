@@ -11,10 +11,12 @@ public class OrdreJugadors {
     private LinkedList<Jugador> jugadors;
     ArrayList<String> noms = UI.getNomsJugadors();
     private int jugadorActiu;
+    private boolean sentitCanviat;
 
     public OrdreJugadors(){
         jugadors = new LinkedList<>();
         this.jugadorActiu = 0;
+        this.sentitCanviat = false;
     }
 
     public void crearJugador(){
@@ -34,12 +36,26 @@ public class OrdreJugadors {
     }
 
     public void passarTorn(){
-        if(jugadorActiu < jugadors.size() - 1){
-            jugadorActiu++;
+        if (!sentitCanviat){
+            if(jugadorActiu < jugadors.size() - 1){
+                jugadorActiu++;
+            }
+            else{
+                jugadorActiu = 0;
+            }
         }
         else{
-            jugadorActiu = 0;
+            if (jugadorActiu > 0){
+                jugadorActiu--;
+            }
+            else {
+                jugadorActiu = jugadors.size() - 1;
+            }
         }
+    }
+
+    public void invertirSentit(){
+        sentitCanviat = !sentitCanviat;
     }
 
     public int getNombreJugadors(){

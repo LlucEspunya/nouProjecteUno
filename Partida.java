@@ -1,9 +1,6 @@
 package uno;
 import uno.interficie.UI;
-import uno.logica.Jugador;
-import uno.logica.Mazo;
-import uno.logica.OrdreJugadors;
-import uno.logica.Pilo;
+import uno.logica.*;
 
 public class Partida {
     Mazo mazo = new Mazo();
@@ -38,6 +35,7 @@ public class Partida {
             System.out.println("Jugador " + jugadorActiu.getNomJugador() + " és el teu torn!");
 
             boolean cartaValida = false;
+            boolean esCartaEspecial = false;
 
             while(!cartaValida){
                 System.out.println("Última carta: ");
@@ -51,20 +49,31 @@ public class Partida {
                         mazo.reiniciarMazo(pilo);
                     }
                 }
-                System.out.println(jugadorActiu.getNomJugador() + ": Cartes a la mà:");
+
                 UI.mostrarCartesJugador(ordreJugadors);
                 int cartaTirar = UI.triarCartaTirar(jugadorActiu.getCartes());      //crida la funció de la UI que demana la carta al jugador
 
                 if(jugadorActiu.potTirarCarta(pilo, cartaTirar)){                   //crida la funció "potTirarCarta" per validar la carta que es vol jugar
+
+                    Carta cartaAJugar = jugadorActiu.getCartes().get(cartaTirar);
+
+                    esCartaEspecial = cartaAJugar instanceof CartesEspecials;
+
                     jugadorActiu.tirarCarta(pilo, cartaTirar);
                     cartaValida = true;
+
+                    if (esCartaEspecial){
+                        ((CartesEspecials) cartaAJugar).activar(ordreJugadors, mazo, pilo);
+                    }
                 }
                 else{
                     System.out.println(jugadorActiu.getNomJugador() + ": La carta no és vàlida!");
                 }
             }
 
-            ordreJugadors.passarTorn();
+            if (!esCartaEspecial){
+                ordreJugadors.passarTorn();
+            }
 
             if (jugadorActiu.getCartes().isEmpty()){
                 System.out.println("Jugador " + jugadorActiu.getNomJugador() + " has guanyat la partida!");

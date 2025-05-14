@@ -8,11 +8,23 @@ public class Mazo {
 
     public Mazo() {
         for (Carta.Color color : Carta.Color.values()) {
-            cartes.push(new Carta(0, color));
+            cartes.push(new CartesNormals(0, color));
             for (int i = 1; i <= 9; i++) {
-                cartes.push(new Carta(i, color));
-                cartes.push(new Carta(i, color));
+                cartes.push(new CartesNormals(i, color));
+                cartes.push(new CartesNormals(i, color));
             }
+
+            cartes.push(new mesDos(color, "+2"));
+            cartes.push(new mesDos(color, "+2"));
+
+            cartes.push(new prohibit(color, "\uD83D\uDEC7"));
+            cartes.push(new prohibit(color, "\uD83D\uDEC7"));
+
+            cartes.push(new canviSentit(color, "↺"));
+            cartes.push(new canviSentit(color, "↺"));
+
+            cartes.push(new mesDos(color, "+4"));
+            cartes.push(new mesDos(color, "+4"));
         }
     }
 

@@ -1,7 +1,5 @@
 package uno.interficie;
-import uno.logica.Jugador;
-import uno.logica.Carta;
-import uno.logica.OrdreJugadors;
+import uno.logica.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -16,19 +14,19 @@ public class UI {
     public static final String YELLOW = "\u001B[33m";
     public static final String BLUE = "\u001B[34m";
 
-    private static String pintarCarta(Carta carta) {
+    private static String pintarCarta(CartesNormals cartaNormal) {
         String color = "";
-        switch (carta.getColor()) {
-            case Carta.Color.groc:
+        switch (cartaNormal.getColor()) {
+            case CartesNormals.Color.groc:
                 color = YELLOW;
                 break;
-            case Carta.Color.vermell:
+            case CartesNormals.Color.vermell:
                 color = RED;
                 break;
-            case Carta.Color.blau:
+            case CartesNormals.Color.blau:
                 color = BLUE;
                 break;
-            case Carta.Color.verd:
+            case CartesNormals.Color.verd:
                 color = GREEN;
                 break;
             default:
@@ -44,21 +42,73 @@ public class UI {
             %s│       %d │%s
             %s└─────────┘%s""",
                 color, RESET,
-                color, carta.getNumero(), RESET,
+                color, cartaNormal.getNumero(), RESET,
                 color, RESET,
                 color, RESET,
                 color, RESET,
-                color, carta.getNumero(), RESET,
+                color, cartaNormal.getNumero(), RESET,
                 color, RESET);
 
 
         return cartaPintada;
     }
 
-    public static void mostrarCarta(Carta carta) {
-        System.out.println(pintarCarta(carta));
+    private static String pintarCartaEspecial(CartesEspecials cartesEspecials){
+        String color = "";
+        switch (cartesEspecials.getColor()) {
+            case CartesNormals.Color.groc:
+                color = YELLOW;
+                break;
+            case CartesNormals.Color.vermell:
+                color = RED;
+                break;
+            case CartesNormals.Color.blau:
+                color = BLUE;
+                break;
+            case CartesNormals.Color.verd:
+                color = GREEN;
+                break;
+            default:
+                break;
+        }
+
+        String cartaPintada = String.format("""
+            %s┌─────────┐%s
+            %s│%s       │%s
+            %s│         │%s
+            %s│   UNO   │%s
+            %s│         │%s
+            %s│      %s │%s
+            %s└─────────┘%s""",
+                color, RESET,
+                color, cartesEspecials.getSimbol(), RESET,
+                color, RESET,
+                color, RESET,
+                color, RESET,
+                color, cartesEspecials.getSimbol(), RESET,
+                color, RESET);
+
+        return cartaPintada;
     }
 
+    private static String pintarCarta(Carta carta) {
+        if (carta instanceof CartesNormals) {
+            return pintarCarta((CartesNormals) carta);
+        } else if (carta instanceof CartesEspecials) {
+            return pintarCartaEspecial((CartesEspecials) carta);
+        }
+        return "No s'ha trobat cap carta";
+    }
+
+    public static void mostrarCarta(Carta carta) {
+        if (carta instanceof CartesNormals) {
+            System.out.println(pintarCarta((CartesNormals) carta));
+        } else if (carta instanceof CartesEspecials) {
+            System.out.println(pintarCartaEspecial((CartesEspecials) carta));
+        } else {
+            System.out.println("Tipo de carta no reconocido");
+        }
+    }
     public static void mostrarCartes(ArrayList<Carta> cartes) {
         int quantitat = cartes.size();
         String[][] cartesPintades = new String[quantitat][];
@@ -97,6 +147,13 @@ public class UI {
         for (int i = 0; i < quantitatJugadors; i++){
             System.out.println("Nom del jugador:");
             String nomJugador = object.nextLine();
+            if (nomJugador.length() > 7){
+                while(nomJugador.length() > 7){
+                    System.out.println("El màxim de caracteres per el nom és 7");
+                    System.out.println("Torna a introduir el nom:");
+                    nomJugador = object.nextLine();
+                }
+            }
             noms.add(nomJugador);
         }
         return noms;
@@ -104,15 +161,15 @@ public class UI {
 
     public static void mostrarCartesJugador(OrdreJugadors ordreJugadors){
         Jugador jugadorActiu = ordreJugadors.getJugadorActiu();
+        System.out.println();
+        System.out.println(jugadorActiu.getNomJugador() + ": Cartes a la mà:");
         mostrarCartes(jugadorActiu.getCartes());
     }
 
-    public static int triarCartaTirar(ArrayList<Carta> cartes){
+    public static int triarCartaTirar(ArrayList<Carta> cartes) {
         System.out.println("Quina carta vols jugar?: ");
         int numCarta = object.nextInt();
-        
         return numCarta - 1;
     }
-
 }
 
