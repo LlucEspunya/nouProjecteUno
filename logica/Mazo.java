@@ -8,6 +8,9 @@ public class Mazo {
 
     public Mazo() {
         for (Carta.Color color : Carta.Color.values()) {
+            if (color == Carta.Color.negre){
+                break;
+            }
             cartes.push(new CartesNormals(0, color));
             for (int i = 1; i <= 9; i++) {
                 cartes.push(new CartesNormals(i, color));
@@ -22,9 +25,9 @@ public class Mazo {
 
             cartes.push(new canviSentit(color, "↺"));
             cartes.push(new canviSentit(color, "↺"));
-
-            cartes.push(new mesDos(color, "+4"));
-            cartes.push(new mesDos(color, "+4"));
+        }
+        for (int i = 0; i < 4; i++){
+            cartes.push(new mesQuatre(Carta.Color.negre, "+4"));
         }
     }
 

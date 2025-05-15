@@ -56,6 +56,7 @@ public class OrdreJugadors {
 
     public void invertirSentit(){
         sentitCanviat = !sentitCanviat;
+        passarTorn();
     }
 
     public int getNombreJugadors(){

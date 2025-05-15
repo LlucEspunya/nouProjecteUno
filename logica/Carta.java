@@ -5,7 +5,8 @@ public abstract class Carta {
         vermell,
         groc,
         verd,
-        blau
+        blau,
+        negre
     }
 
     private Color colorCarta;
@@ -19,6 +20,9 @@ public abstract class Carta {
     }
 
     public static boolean sonCompatibles(Carta carta1, Carta carta2){
+        if (carta1.getColor() == Color.negre || carta2.getColor() == Color.negre){
+            return true;
+        }
         if (carta1 instanceof CartesNormals && carta2 instanceof CartesNormals){
             boolean colorsSonIguals = carta1.getColor() == carta2.getColor();
             boolean numerosSonIguals = ((CartesNormals) carta1).getNumero() == ((CartesNormals) carta2).getNumero();
