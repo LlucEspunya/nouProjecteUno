@@ -1,3 +1,4 @@
+
 package uno.interficie;
 import uno.logica.*;
 
@@ -74,7 +75,7 @@ public class UI {
 
         String cartaPintada = String.format("""
             %s┌─────────┐%s
-            %s│%s       │%s
+            %s│ %s      │%s
             %s│         │%s
             %s│   UNO   │%s
             %s│         │%s
@@ -172,4 +173,3 @@ public class UI {
         return numCarta - 1;
     }
 }
-

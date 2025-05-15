@@ -1,5 +1,5 @@
 package uno.logica;
-
+import java.util.Scanner;
 import uno.interficie.UI;
 
 public class CartesEspecials extends Carta{
@@ -50,7 +50,7 @@ class mesDos extends CartesEspecials{
 
 class prohibit extends CartesEspecials{
     public prohibit(Color color, String simbol){
-        super(color, "\uD83D\uDEC7");
+        super(color, "P ");
     }
 
     @Override
@@ -63,7 +63,7 @@ class prohibit extends CartesEspecials{
 
 class canviSentit extends CartesEspecials{
     public canviSentit(Color color, String simbol){
-        super(color, "↺");
+        super(color, "<-");
     }
 
     @Override
@@ -78,6 +78,7 @@ class mesQuatre extends CartesEspecials{
     }
     @Override
     public void activar(OrdreJugadors ordreJugadors, Mazo mazo, Pilo pilo) {
+        Scanner object = new Scanner(System.in);
         int voltes = 4;
         String jugadorTiraCarta = ordreJugadors.getJugadorActiu().getNomJugador();
         ordreJugadors.passarTorn();
@@ -88,7 +89,6 @@ class mesQuatre extends CartesEspecials{
             ordreJugadors.getJugadorActiu().robarCarta(mazo);
             voltes--;
         }
-
         if (mazo.getCartes().isEmpty()){
             mazo.reiniciarMazo(pilo);
         }
